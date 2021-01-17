@@ -1,0 +1,101 @@
+<div class="ui inverted dimmer" [class.active]="loading">
+  <div class="ui text loader">Loading</div>
+</div>
+<div class="jumbotron bg-white text-center">
+  <h1 class="display-4">Corona Covid-19 Tracker</h1>
+  <hr />
+  <app-dashboard-card
+    [totalConfirmed]="totalConfirmed"
+    [totalDeaths]="totalDeaths"
+    [totalActive]="totalActive"
+    [totalRecovered]="totalRecovered"
+  ></app-dashboard-card>
+</div>
+<hr />
+<div class="ui form">
+  <div class="inline fields">
+    <label for="fruit">Select case type:</label>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input
+          type="radio"
+          value="c"
+          id="c"
+          #c
+          (click)="updateChart(c)"
+          name="caseType"
+          checked=""
+          tabindex="0"
+          class="hidden"
+        />
+        <label for="c">Confirmed</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input
+          type="radio"
+          value="d"
+          id="d"
+          #d
+          (click)="updateChart(d)"
+          name="caseType"
+          tabindex="0"
+          class="hidden"
+        />
+        <label for="d">Deaths</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input
+          type="radio"
+          value="r"
+          id="r"
+          #r
+          (click)="updateChart(r)"
+          name="caseType"
+          tabindex="0"
+          class="hidden"
+        />
+        <label for="r">Recovered</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input
+          type="radio"
+          value="a"
+          id="a"
+          #a
+          (click)="updateChart(a)"
+          name="caseType"
+          tabindex="0"
+          class="hidden"
+        />
+        <label for="a">Active</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <google-chart
+      [type]="chart.PieChart"
+      [options]="chart.options"
+      [data]="datatable"
+      [height]="chart.height"
+      style="width: 100%"
+    ></google-chart>
+  </div>
+  <div class="col">
+    <google-chart
+      [type]="chart.ColumnChart"
+      style="width: 100%"
+      [options]="chart.options"
+      [data]="datatable"
+      [height]="chart.height"
+    ></google-chart>
+  </div>
+</div>
